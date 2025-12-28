@@ -1,3 +1,4 @@
+//src/components/layout/Sidebar.jsx
 import {
   BarChart3,
   Calendar,
@@ -31,8 +32,6 @@ const menuItems = [
       { id: 'reports', label: 'Reports' },
       { id: 'insights', label: 'Insights' },
     ],
-    // active: true,
-    // badge: 'New',
   },
   {
     id: 'users',
@@ -41,8 +40,8 @@ const menuItems = [
     count: '2.4k',
     submenus: [
       { id: 'all-users', label: 'All Users' },
-      { id: 'roles', label: 'Roles & Permissions' },
-      { id: 'activity', label: 'Activity' },
+      { id: 'users-roles', label: 'Roles & Permissions' },
+      { id: 'users-activity', label: 'Activity' },
     ],
   },
   {
@@ -54,8 +53,6 @@ const menuItems = [
       { id: 'orders', label: 'Orders' },
       { id: 'customers', label: 'Customers' },
     ],
-    // active: true,
-    // badge: 'New'
   },
   {
     id: 'inventory',
@@ -114,7 +111,7 @@ const Sidebar = ({
 
   return (
     <div
-      className={`${sidebarCollapsed ? 'w-20' : 'w-72'} relative z-10 flex flex-col border-r border-slate-200/50 bg-white/80 transition-all duration-300 ease-in-out backdrop:blur-xl dark:border-slate-700/50 dark:bg-slate-900/80`}
+      className={`relative z-10 flex flex-col border-r border-slate-200/50 bg-white/80 backdrop-blur-xl transition-all duration-300 ease-in-out dark:border-slate-700/50 dark:bg-slate-900/80 ${sidebarCollapsed ? 'w-20' : 'w-72'} `}
     >
       {/*Logo */}
       <div className='border-b border-slate-200/50 p-6 dark:border-slate-700/50'>
@@ -197,10 +194,20 @@ const Sidebar = ({
                 !sidebarCollapsed &&
                 expandedMenus.has(item.id) && (
                   <div className='mt-2 ml-8 space-y-1'>
-                    {item.submenus.map((subitmen) => {
+                    {item.submenus.map((subitem) => {
                       return (
-                        <button className='w-full rounded-lg p-2 text-left text-sm text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200'>
-                          {subitmen.label}
+                        <button
+                          onClick={() => onPageChange(subitem.id)}
+                          key={subitem.id}
+                          className={`w-full rounded-lg p-2 text-left text-sm transition-all ${
+                            currentPage === subitem.id
+                              ? 'bg-blue-100 font-medium text-blue-600'
+                              : 'text-slate-600 hover:bg-slate-100'
+                          } `}
+
+                          // className='w-full rounded-lg p-2 text-left text-sm text-slate-600 transition-all hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200'
+                        >
+                          {subitem.label}
                         </button>
                       );
                     })}

@@ -1,3 +1,4 @@
+//src/components/layout/Header.jsx
 import React from 'react';
 import {
   Filter,
@@ -45,7 +46,7 @@ const Header = ({ sidebarCollapsed, onToggleSidebar }) => {
         </div>
 
         {/* Right Header Areea */}
-        <button className='transition-a hidden cursor-pointer items-center space-x-2 rounded-xl bg-linear-to-r from-blue-500 to-purple-600 px-4 py-2 text-white hover:shadow-lg lg:flex'>
+        <button className='transition-all hidden cursor-pointer items-center space-x-2 rounded-xl bg-linear-to-r from-blue-500 to-purple-600 px-4 py-2 text-white hover:shadow-lg lg:flex'>
           {/* Quick Actions */}
           <Plus className='h-4 w-4' />
           <span className='text-sm font-medium'>New</span>
